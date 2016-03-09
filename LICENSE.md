@@ -19,13 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 [View official GNU site (**http://www.gnu.org/licenses/gpl.html**)](http://www.gnu.org/licenses/gpl.html).
 
 ## License Source :
- - gpl-3.0-or.txt : from official GNU site <http://www.gnu.org/licenses/gpl-3.0.txt>
- - gpl-3.0.md : from gpl-3.0-or.txt format with Markdown by Techniv <https://github.com/Techniv/Licenses-for-GitHub/blob/master/GNU-GPL/V3/gpl-3.0.md>
- - gpl-3.0-fr-noff.txt : non-official translation by Philippe Verdy 
-   from <http://www.gnu.org/licenses/gpl-3.0.txt>
- - gpl-3.0-fr-noff.md : from gpl-3.0-fr-noff.txt format with Markdown by Techniv
+ - Official GNU site <http://www.gnu.org/licenses/gpl-3.0.txt>
+ - Markdown version by Techniv <https://github.com/Techniv/Licenses-for-GitHub/blob/master/GNU-GPL/V3/gpl-3.0.md>
 
-### Related : 
+### Additional resources : 
  - [Wikipedia - GNU General Public License](http://en.wikipedia.org/wiki/GNU_General_Public_License) - 
    [(fr)](http://fr.wikipedia.org/wiki/Licence_publique_générale_GNU)
    [(de)](http://de.wikipedia.org/wiki/GNU_General_Public_License)
