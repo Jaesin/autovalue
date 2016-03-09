@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ *   Contains the autovalue.module file.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function autovalue_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help
+    case 'help.page.autovalue':
+      return t('<h3>%title</h3><p>%description</p>', [
+        '%title' => 'About',
+        '%description' => 'Provides an api for providing auto populated values.',
+      ]);
+  }
+}

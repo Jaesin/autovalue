@@ -1,0 +1,17 @@
+{
+    "name": "drupal/autovalue",
+    "description": "Provides an api for providing auto populated values.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/autovalue",
+    "support": {
+        "issues": "https://github.com/Jaesin/autovalue/issues",
+        "source": "https://github.com/Jaesin/autovalue"
+    },
+    "license": "GPL-2.0+",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.drupal-composer.org"
+        }
+    ]
+}
