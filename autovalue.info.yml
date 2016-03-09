@@ -1,5 +1,5 @@
 name: Automatic Value
-description: Provides an api for providing auto populated values.
+description: Provides an api for generating values for auto population.
 package: Other
 type: module
 core: 8.x

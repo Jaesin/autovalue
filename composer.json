@@ -1,6 +1,6 @@
 {
     "name": "drupal/autovalue",
-    "description": "Provides an api for providing auto populated values.",
+    "description": "Provides an api for generating values for auto population.",
     "type": "drupal-module",
     "homepage": "https://www.drupal.org/project/autovalue",
     "support": {

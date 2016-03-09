@@ -50,15 +50,16 @@ class AutoValuePluginManagerTest extends KernelTestBase {
   public function testGetPlugins() {
     $plugin_definitions = $this->plugin_manager->getDefinitions();
     $this->assertTrue(is_array($plugin_definitions), "Get plugin definitions.");
+
     $this->assertArraySubset([
       'default' => [
         'id'=>'default',
-        'default_field_id' => '',
+        'default_destination_id' => '',
       ]], $plugin_definitions, 'The default plugin definition exists.');
     $this->assertArraySubset([
       'token' => [
         'id'=>'token',
-        'default_field_id'=>'title',
+        'default_destination_id'=>'title',
       ]], $plugin_definitions, 'The token plugin definition exists.');
   }
 
