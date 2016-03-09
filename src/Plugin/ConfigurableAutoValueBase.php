@@ -13,12 +13,6 @@ use Drupal\Core\Plugin\PluginDependencyTrait;
 abstract class ConfigurableAutoValueBase extends AutoValueBase implements ConfigurablePluginInterface {
 
   /**
-   * Provides a calculateDependencies method that auto calculates dependencies
-   *   for plugins.
-   */
-  use PluginDependencyTrait;
-
-  /**
    * {@inheritdoc}
    */
   public function getSettingsForm(array $form, array &$form_state) {
@@ -51,15 +45,5 @@ abstract class ConfigurableAutoValueBase extends AutoValueBase implements Config
     );
 
     return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function calculateDependencies() {
-    // Calculate plugin dependencies for self.
-    $this->calculatePluginDependencies($this);
-
-    return $this->dependencies;
   }
 }

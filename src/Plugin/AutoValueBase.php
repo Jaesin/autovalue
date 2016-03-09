@@ -24,4 +24,15 @@ abstract class AutoValueBase extends PluginBase implements AutoValueInterface {
   public function getLabel() {
     return $this->pluginDefinition['label'];
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function calculateDependencies() {
+    // Calculate plugin dependencies for self.
+    $this->calculatePluginDependencies($this);
+
+    return $this->dependencies;
+  }
+
 }
