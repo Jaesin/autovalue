@@ -1,0 +1,6 @@
+services:
+  plugin.manager.autovalue:
+    class: Drupal\autovalue\Service\AutoValuePluginManager
+    parent: default_plugin_manager
+  autovalue:
+    class: Drupal\autovalue\Service\AutoValueService
