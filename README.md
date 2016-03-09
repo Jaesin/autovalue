@@ -5,4 +5,4 @@ Automatic Value
 
 #### Provides an api for providing auto populated values.
 
-Plugin concept inspired from the entity labels sandbox project: (Benedikt entity_labels)[https://www.drupal.org/sandbox/bforchhammer/2278229].
+Plugin concept inspired from the entity labels sandbox project: [Benedikt entity_labels](https://www.drupal.org/sandbox/bforchhammer/2278229).
