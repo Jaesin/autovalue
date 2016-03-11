@@ -9,6 +9,7 @@ namespace Drupal\autovalue\Plugin\AutoValue;
 use Drupal\autovalue\Plugin\AutoValueInterface;
 use Drupal\autovalue\Plugin\ConfigurableAutoValueBase;
 use Drupal\Component\Utility\Random;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Defines an random value generator.
@@ -82,8 +83,8 @@ class RandomValue extends ConfigurableAutoValueBase implements AutoValueInterfac
   /**
    * {@inheritdoc}
    */
-  public function getSettingsForm(array $form, array &$form_state) {
-    return parent::getSettingsForm($form, $form_state) + [
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    return parent::buildConfigurationForm($form, $form_state) + [
       'value_type' => [
         '#type' => 'select',
         '#title' => $this->t('Type of value.'),
