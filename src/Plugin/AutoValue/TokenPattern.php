@@ -9,6 +9,7 @@ namespace Drupal\autovalue\Plugin\AutoValue;
 use Drupal\autovalue\Plugin\AutoValueInterface;
 use Drupal\autovalue\Plugin\ConfigurableAutoValueBase;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Defines an automatic value plugin which is based on text patterns with
@@ -58,9 +59,8 @@ class TokenPattern extends ConfigurableAutoValueBase implements AutoValueInterfa
   /**
    * {@inheritdoc}
    */
-  public function getSettingsForm(array $form, array &$form_state) {
-
-    return parent::getSettingsForm($form, $form_state) + [
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    return parent::buildConfigurationForm($form, $form_state) + [
       'pattern' => [
         '#type' => 'textarea',
         '#title' => $this->t('Token Pattern'),

@@ -8,16 +8,29 @@ namespace Drupal\autovalue\Plugin;
 
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginDependencyTrait;
+use Drupal\Core\Plugin\PluginFormInterface;
 
-abstract class ConfigurableAutoValueBase extends AutoValueBase implements ConfigurablePluginInterface {
+abstract class ConfigurableAutoValueBase extends AutoValueBase implements ConfigurablePluginInterface, PluginFormInterface {
 
   /**
    * {@inheritdoc}
    */
-  public function getSettingsForm(array $form, array &$form_state) {
-
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
   }
 
   /**
