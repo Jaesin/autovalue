@@ -88,7 +88,6 @@ class AutovalueConfiguration extends FormElement {
     $array_parents = $form_state->getTriggeringElement()['#array_parents'];
     array_pop($array_parents);
     $array_parents[] = 'configuration';
-    $a = \Drupal\Component\Utility\NestedArray::getValue($form, $array_parents);
     return NestedArray::getValue($form, $array_parents);
   }
 
