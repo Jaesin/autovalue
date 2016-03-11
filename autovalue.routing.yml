@@ -1,0 +1,7 @@
+autovalue.settings_form:
+  path: /admin/config/content/autovalue
+  defaults:
+    _title: Autovalue configuration
+    _form: \Drupal\autovalue\Form\AutovalueSettingsForm
+  requirements:
+    _permission: administer site configuration
