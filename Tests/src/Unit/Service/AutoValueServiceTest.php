@@ -8,6 +8,10 @@ namespace Drupal\autovalue\Tests\Unit\Service;
 
 use Drupal\Tests\UnitTestCase;
 
+/**
+ * @coversDefaultClass \Drupal\autovalue\Service\AutoValueService
+ * @group autovalue
+ */
 class AutoValueServiceTest extends UnitTestCase {
 
   /**
