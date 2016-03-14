@@ -9,6 +9,9 @@ namespace Drupal\autovalue\Plugin\AutoValue;
 use Drupal\autovalue\Plugin\AutoValueInterface;
 use Drupal\autovalue\Plugin\ConfigurableAutoValueBase;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Utility\Token;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines an automatic value plugin which is based on text patterns with
@@ -22,7 +25,7 @@ use Drupal\Component\Utility\NestedArray;
  *   default_pattern = @Translation("%entity_type-%bundle_type-%enitty_id")
  * )
  */
-class TokenPattern extends ConfigurableAutoValueBase implements AutoValueInterface {
+class TokenPattern extends ConfigurableAutoValueBase implements AutoValueInterface, ContainerFactoryPluginInterface {
 
   /**
    * The token data to pass on to token->replace().
@@ -39,7 +42,44 @@ class TokenPattern extends ConfigurableAutoValueBase implements AutoValueInterfa
   protected $token_options;
 
   /**
+   * The token service.
+   *
+   * @var \Drupal\Core\Utility\Token
+   */
+  private $token;
+
+  /**
+   * Constructs a Drupal\Component\Plugin\PluginBase object.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Token $token) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->token = $token;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('token')
+    );
+  }
+
+  /**
    * Returns the token pattern.
+   *
+   * @return string
    */
   public function getPattern() {
     return $this->configuration['pattern'];
@@ -51,7 +91,7 @@ class TokenPattern extends ConfigurableAutoValueBase implements AutoValueInterfa
   public function getValue() {
     $token_data = $this->getTokenData();
     $token_options = $this->getTokeOptions();
-    return \Drupal::token()
+    return $this->token
       ->replace($this->getPattern(), $token_data ?: [], $token_options ?: []);
   }
 
