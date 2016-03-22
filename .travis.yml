@@ -7,6 +7,9 @@ php:
   - 7
   - hhvm
 
+env:
+  - DRUPAL_MODULE=autovalue
+
 matrix:
   allow_failures:
     # We cannot use hhvm-nightly since that does not work in Travis CI's old
@@ -27,7 +30,7 @@ before_script:
   # Create database.
   - mysql -e 'CREATE DATABASE IF NOT EXISTS drupal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci' -uroot
 
-  # Remember the current autovalue test directory for later use in the Drupal
+  # Remember the current test directory for later use in the Drupal
   # installation.
   - TESTDIR=$(pwd)
   # Navigate out of module directory to prevent blown stack by recursive module
@@ -44,7 +47,7 @@ before_script:
   - cd drupal
 
   # Reference the module in build site.
-  - ln -s $TESTDIR modules/autovalue
+  - ln -s $TESTDIR modules/$DRUPAL_MODULE
 
   # Start a web server on port 8888, run in the background; wait for
   # initialization.
@@ -52,4 +55,4 @@ before_script:
 
 script:
   # Run the PHPUnit tests which also include the kernel tests.
-  - ./vendor/phpunit/phpunit/phpunit -c ./core/phpunit.xml.dist --verbose ./modules/autovalue
+  - ./vendor/phpunit/phpunit/phpunit -c ./core/phpunit.xml.dist --verbose ./modules/$DRUPAL_MODULE
