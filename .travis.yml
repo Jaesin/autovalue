@@ -8,12 +8,13 @@ php:
   - hhvm
 
 env:
-  # The name of the moduel to run tests on (this module).
-  - DRUPAL_MODULE=autovalue
-  # Database variable for kernel tests.
-  - SIMPLETEST_DB="mysql://root:@127.0.0.1/drupal"
-  # Web server URL for browser tests.
-  - SIMPLETEST_BASE_URL="http://localhost:8888"
+  global:
+    # The name of the moduel to run tests on (this module).
+    - DRUPAL_MODULE=autovalue
+    # Database variable for kernel tests.
+    - SIMPLETEST_DB="mysql://root:@127.0.0.1/drupal"
+    # Web server URL for browser tests.
+    - SIMPLETEST_BASE_URL="http://localhost:8888"
 
 matrix:
   allow_failures:
