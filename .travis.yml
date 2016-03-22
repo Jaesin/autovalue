@@ -8,7 +8,12 @@ php:
   - hhvm
 
 env:
+  # The name of the moduel to run tests on (this module).
   - DRUPAL_MODULE=autovalue
+  # Database variable for kernel tests.
+  - SIMPLETEST_DB="mysql://root:@127.0.0.1/drupal"
+  # Web server URL for browser tests.
+  - SIMPLETEST_BASE_URL="http://localhost:8888"
 
 matrix:
   allow_failures:
@@ -23,36 +28,23 @@ services:
 
 before_script:
   # Remove Xdebug as we don't need it and it causes
-  # PHP Fatal error:  Maximum function nesting level of '256' reached.
-  # We also don't care if that file exists or not on PHP 7.
   - phpenv config-rm xdebug.ini || true
 
   # Create database.
   - mysql -e 'CREATE DATABASE IF NOT EXISTS drupal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci' -uroot
 
-  # Remember the current test directory for later use in the Drupal
-  # installation.
-  - TESTDIR=$(pwd)
-  # Navigate out of module directory to prevent blown stack by recursive module
-  # lookup.
-  - cd ..
-
-  # Export database variable for kernel tests.
-  - export SIMPLETEST_DB=mysql://root:@127.0.0.1/drupal
-  # Export web server URL for browser tests.
-  - export SIMPLETEST_BASE_URL=http://localhost:8888
+  # Set the drupal root folder location.
+  - export DRUPAL_ROOT=$TRAVIS_BUILD_DIR/../drupal
 
   # Download Drupal 8 core.
-  - travis_retry git clone --branch 8.0.x --depth 1 http://git.drupal.org/project/drupal.git
-  - cd drupal
+  - travis_retry git clone --branch 8.0.x --depth 1 http://git.drupal.org/project/drupal.git $DRUPAL_ROOT
 
   # Reference the module in build site.
-  - ln -s $TESTDIR modules/$DRUPAL_MODULE
+  - ln -s $TRAVIS_BUILD_DIR $DRUPAL_ROOT/modules/$DRUPAL_MODULE
 
-  # Start a web server on port 8888, run in the background; wait for
-  # initialization.
+  # Start a web server on port 8888, run in the background; wait for initialization.
   - nohup php -S localhost:8888 > /dev/null 2>&1 &
 
 script:
   # Run the PHPUnit tests which also include the kernel tests.
-  - ./vendor/phpunit/phpunit/phpunit -c ./core/phpunit.xml.dist --verbose ./modules/$DRUPAL_MODULE
+  - $DRUPAL_ROOT/vendor/phpunit/phpunit/phpunit -c $DRUPAL_ROOT/core/phpunit.xml.dist --verbose $DRUPAL_ROOT/modules/$DRUPAL_MODULE
