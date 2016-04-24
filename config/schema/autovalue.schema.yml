@@ -1,0 +1,47 @@
+autovalue.autovalue_settings.*.*:
+  type: config_entity
+  label: Autovalue Settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    target_entity_type_id:
+      type: string
+      label: 'Entity Type ID'
+    target_bundle:
+      type: string
+      label: 'Bundle'
+    configuration:
+      type: sequence
+      sequence:
+        type: autovalue.autovalue.[id]
+
+autovalue.autovalue.*:
+  type: mapping
+  mapping:
+    id:
+      type: string
+      label: Plugin ID
+
+autovalue.autovalue.token:
+  type: mapping
+  mapping:
+    id:
+      type: string
+      label: Plugin ID
+    pattern:
+      type: string
+      label: Pattern
+
+autovalue.autovalue.random_value:
+  type: mapping
+  mapping:
+    id:
+      type: string
+      label: Plugin ID
+    value_type:
+      type: string
+      label: Value type
+    length:
+      type: integer
+      label: Length
